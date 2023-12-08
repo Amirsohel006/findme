@@ -11,7 +11,7 @@ import kotlin.Int
 import kotlin.collections.List
 
 class SixAdapter(
-  var list: List<SixRowModel>
+  var list: List<String>
 ) : RecyclerView.Adapter<SixAdapter.RowSixVH>() {
   private var clickListener: OnItemClickListener? = null
 
@@ -21,17 +21,19 @@ class SixAdapter(
   }
 
   override fun onBindViewHolder(holder: RowSixVH, position: Int) {
-    val sixRowModel = SixRowModel()
-    // TODO uncomment following line after integration with data source
-    // val sixRowModel = list[position]
-    holder.binding.sixRowModel = sixRowModel
+//    val sixRowModel = SixRowModel()
+//    // TODO uncomment following line after integration with data source
+//    // val sixRowModel = list[position]
+//    holder.binding.sixRowModel = sixRowModel
+
+    // Glide.with(holder.itemView.context).load(imageList[position]).into(holder.imageView)
   }
 
-  override fun getItemCount(): Int = 8
-  // TODO uncomment following line after integration with data source
-  // return list.size
+  override fun getItemCount(): Int {
+  return list.size
+  }
 
-  public fun updateData(newData: List<SixRowModel>) {
+  public fun updateData(newData: List<String>) {
     list = newData
     notifyDataSetChanged()
   }
