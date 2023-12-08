@@ -59,8 +59,11 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                itemSpace="@{@dimen/_24pxh}" tools:itemCount="8" tools:listitem="@layout/row_six"/>
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                itemSpace="@{@dimen/_24pxh}"
+                tools:itemCount="5"
+                tools:listitem="@layout/row_six"/>
         </FrameLayout>
     </LinearLayout>
 </layout>

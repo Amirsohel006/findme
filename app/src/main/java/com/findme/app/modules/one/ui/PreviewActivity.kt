@@ -128,11 +128,25 @@ class PreviewActivity : BaseActivity<ActivityPreviewBinding>(R.layout.activity_p
 
 
     override fun onQRCodeScanned(qrCodeData: String) {
-        runOnUiThread {
-            showQRCodeDataDialog(qrCodeData)
 
-            moveToValidActivity()
+        try {
+            val jsonObject = JSONObject(qrCodeData)
+            val eventName = jsonObject.getString("event_name")
+
+            Log.d(TAG, "Event Name: $eventName")
+
+            // Now you have the event_name, you can pass it to the next activity
+            moveToValidActivity(eventName)
+        } catch (e: JSONException) {
+            // Handle JSON parsing exception
+            Log.e(TAG, "Error parsing QR code data: $qrCodeData", e)
+            showQRCodeDataDialog("Invalid QR Code")
         }
+//        runOnUiThread {
+//            showQRCodeDataDialog(qrCodeData)
+//
+//            moveToValidActivity()
+//        }
     }
 
 
@@ -177,10 +191,10 @@ class PreviewActivity : BaseActivity<ActivityPreviewBinding>(R.layout.activity_p
 
 
 
-    private fun moveToValidActivity() {
+    private fun moveToValidActivity(eventName: String) {
         val i=Intent(this,FiveActivity::class.java)
+        intent.putExtra("event_name", eventName)
         startActivity(i)
-        finish()
     }
 
     companion object {
