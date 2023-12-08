@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="app_name">Find Me</string>
+    <string name="loading">Loading…</string>
+    <string name="no_internet_connection">No internet connection!</string>
+    <string name="lbl_marriage_event">Marriage Event</string>
+    <string name="lbl_continue">Continue &gt;&gt;</string>
+    <string name="msg_91_71">+91 71********  through SMS.</string>
+    <string name="lbl_your_photos">Your Photos</string>
+    <string name="lbl_rohit">Rohit </string>
+    <string name="lbl_enter_name">Enter Name</string>
+    <string name="msg_please_enter_th">Please enter the 5 digit OTP Sent to</string>
+    <string name="lbl_resend_otp">Resend OTP</string>
+    <string name="lbl_go_back">&lt;&lt;Go Back</string>
+    <string name="lbl_confirm">Confirm</string>
+    <string name="msg_enter_mobile_nu">Enter Mobile number</string>
+    <string name="lbl_91_71">+91 71********</string>
+    <string name="msg_verify_mobile_n">Verify Mobile Number</string>
+    <string name="lbl_through_sms">  through SMS.</string>
+    <string name="lbl_register">Register</string>
+    <string name="lbl_take_selfie">Take Selfie</string>
+    <string name="lbl_weds">Weds</string>
+    <string name="lbl_rashmi">Rashmi</string>
+    <string name="lbl_scan">Scan</string>
+    <string name="lbl_enter_otp">Enter OTP</string>
+    <string name="msg_please_enter_valid_phone_nu">Please enter valid phone number</string>
+    <string name="msg_please_enter_valid_text">Please enter valid text</string>
+</resources>

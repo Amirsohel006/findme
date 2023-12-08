@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="fourVM" type="com.findme.app.modules.four.data.viewmodel.FourVM"/>
+    </data>
+    <LinearLayout android:id="@+id/linearFour"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <FrameLayout android:gravity="start"
+            android:id="@+id/frameStackverifymobilen"
+            android:layout_height="@dimen/_363pxv" android:layout_width="match_parent">
+            <ImageView android:id="@+id/imageImageOne"
+                android:layout_gravity="top|start"
+                android:layout_height="@dimen/_310pxv"
+                android:layout_marginBottom="@dimen/_10pxv"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                imageRes="@{@drawable/img_image1_1}"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_image1_1"/>
+            <LinearLayout android:id="@+id/linearColumnverifymobilen"
+                android:layout_gravity="bottom|center"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_56pxh"
+                android:layout_marginStart="@dimen/_56pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <TextView android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/txtVerifyMobileN"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_26pxh"
+                    android:layout_marginStart="@dimen/_26pxh"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:text="@{fourVM.fourModel.txtVerifyMobileN}"
+                    style="@style/txtPoppinsbold20" tools:text="@string/msg_verify_mobile_n"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtPleaseenterth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:text="@{fourVM.fourModel.txtPleaseenterth}"
+                    style="@style/txtPoppinsregular16" tools:text="@string/msg_please_enter_th"/>
+                <TextView android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/txtLanguage"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_23pxh"
+                    android:layout_marginStart="@dimen/_26pxh"
+                    android:layout_marginTop="@dimen/_6pxv"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:text="@{fourVM.fourModel.txtLanguage}"
+                    style="@style/txtNunitoregular16" tools:text="@string/msg_91_71"/>
+            </LinearLayout>
+        </FrameLayout>
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearColumnenterotp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15pxh"
+            android:layout_marginStart="@dimen/_15pxh"
+            android:layout_marginTop="@dimen/_21pxv"
+            android:layout_width="wrap_content"
+            android:orientation="vertical" style="@style/groupStylecornerRadius_2">
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtEnterOTP"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{fourVM.fourModel.txtEnterOTP}"
+                style="@style/txtNunitoregular14" tools:text="@string/lbl_enter_otp"/>
+            <LinearLayout android:id="@+id/linearRowrectanglefour"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_19pxv"
+                android:layout_width="wrap_content" android:orientation="horizontal">
+                <View
+                    android:background="@drawable/rectangle_border_indigo_800_radius_10"
+                    android:id="@+id/viewRectangleFour"
+                    android:layout_height="@dimen/_54pxv" android:layout_width="@dimen/_60pxh"/>
+                <View
+                    android:background="@drawable/rectangle_border_indigo_800_radius_10"
+                    android:id="@+id/viewRectangleFive"
+                    android:layout_height="@dimen/_54pxv"
+                    android:layout_marginStart="@dimen/_10pxh" android:layout_width="@dimen/_60pxh"/>
+                <View
+                    android:background="@drawable/rectangle_border_indigo_800_radius_10"
+                    android:id="@+id/viewRectangleSix"
+                    android:layout_height="@dimen/_54pxv"
+                    android:layout_marginStart="@dimen/_10pxh" android:layout_width="@dimen/_60pxh"/>
+                <View
+                    android:background="@drawable/rectangle_border_indigo_800_radius_10"
+                    android:id="@+id/viewRectangleSeven"
+                    android:layout_height="@dimen/_54pxv"
+                    android:layout_marginStart="@dimen/_10pxh" android:layout_width="@dimen/_60pxh"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView android:ellipsize="end" android:id="@+id/txtResendOTP"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15pxh"
+            android:layout_marginStart="@dimen/_15pxh"
+            android:layout_marginTop="@dimen/_29pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@{fourVM.fourModel.txtResendOTP}"
+            style="@style/txtNunitobold16" textUnderline="true" tools:text="@string/lbl_resend_otp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnConfirm"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15pxh"
+            android:layout_marginStart="@dimen/_15pxh"
+            android:layout_marginTop="@dimen/_45pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_16pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_16pxv" android:singleLine="true"
+            android:text="@string/lbl_confirm"
+            android:textAllCaps="false"
+            style="@style/btnGradientRounded" tools:text="@string/lbl_confirm"/>
+        <TextView android:ellipsize="end" android:id="@+id/txtGoBack"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_15pxh"
+            android:layout_marginStart="@dimen/_15pxh"
+            android:layout_marginTop="@dimen/_144pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@{fourVM.fourModel.txtGoBack}"
+            style="@style/txtNunitoregular16_1" tools:text="@string/lbl_go_back"/>
+    </LinearLayout>
+</layout>

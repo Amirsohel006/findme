@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="twoVM" type="com.findme.app.modules.two.data.viewmodel.TwoVM"/>
+    </data>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearTwo" android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStyle">
+        <FrameLayout android:gravity="start"
+            android:id="@+id/frameStackmarriageEvent"
+            android:layout_height="@dimen/_330pxv" android:layout_width="match_parent">
+            <FrameLayout android:id="@+id/frameStackarrowleft"
+                android:layout_gravity="top|start"
+                android:layout_height="@dimen/_310pxv"
+                android:layout_marginBottom="@dimen/_10pxv" android:layout_width="match_parent">
+                <ImageView android:id="@+id/imageImageOne"
+                    android:layout_gravity="start"
+                    android:layout_height="@dimen/_310pxh"
+                    android:layout_width="match_parent"
+                    android:scaleType="fitXY"
+                    imageRes="@{@drawable/img_image1}"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_image1"/>
+                <ImageButton
+                    android:background="@drawable/rectangle_bg_gray_100_radius_25"
+                    android:id="@+id/btnArrowleft"
+                    android:layout_gravity="top|start"
+                    android:layout_height="@dimen/_50pxh"
+                    android:layout_marginBottom="@dimen/_60pxv"
+                    android:layout_marginEnd="@dimen/_31pxh"
+                    android:layout_marginStart="@dimen/_31pxh"
+                    android:layout_marginTop="@dimen/_60pxv"
+                    android:layout_width="@dimen/_50pxh"
+                    android:paddingHorizontal="@dimen/_16pxh"
+                    android:paddingVertical="@dimen/_16pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_arrowleft" tools:ignore="ContentDescription"/>
+            </FrameLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end" android:gravity="center"
+                android:id="@+id/btnMarriageEvent"
+                android:layout_gravity="bottom|center"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_112pxh"
+                android:layout_marginStart="@dimen/_112pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_10pxv"
+                android:paddingEnd="@dimen/_27pxh"
+                android:paddingStart="@dimen/_27pxh"
+                android:paddingTop="@dimen/_10pxv"
+                android:singleLine="true"
+                android:text="@string/lbl_marriage_event"
+                android:textAllCaps="false"
+                style="@style/btnSolidRounded" tools:text="@string/lbl_marriage_event"/>
+        </FrameLayout>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnlanguage"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_35pxh"
+            android:layout_marginStart="@dimen/_41pxh"
+            android:layout_marginTop="@dimen/_39pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylecornerRadius">
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtLanguage"
+                android:layout_gravity="start"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_98pxh"
+                android:layout_marginStart="@dimen/_98pxh"
+                android:layout_marginTop="@dimen/_25pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{twoVM.twoModel.txtLanguage}"
+                style="@style/txtArizoniaregular48" tools:text="@string/lbl_rohit"/>
+            <TextView android:ellipsize="end" android:id="@+id/txtWeds"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_88pxh"
+                android:layout_marginStart="@dimen/_88pxh"
+                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{twoVM.twoModel.txtWeds}"
+                style="@style/txtAlegreyaromanregular20" tools:text="@string/lbl_weds"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtRashmi"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_28pxv"
+                android:layout_marginEnd="@dimen/_88pxh"
+                android:layout_marginStart="@dimen/_88pxh"
+                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@{twoVM.twoModel.txtRashmi}"
+                style="@style/txtArizoniaregular48" tools:text="@string/lbl_rashmi"/>
+        </LinearLayout>
+        <TextView android:ellipsize="end" android:id="@+id/txtContinue"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_41pxh"
+            android:layout_marginStart="@dimen/_41pxh"
+            android:layout_marginTop="@dimen/_99pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@{twoVM.twoModel.txtContinue}"
+            style="@style/txtRalewayromanmedium20" textUnderline="true" tools:text="@string/lbl_continue"/>
+    </LinearLayout>
+</layout>

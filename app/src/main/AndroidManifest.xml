@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.findme.app">
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+    <application
+        android:name="com.findme.app.appcomponents.di.MyApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApp"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.findme.app.modules.frame.ui.FrameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.findme.app.modules.four.ui.FourActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.findme.app.modules.two.ui.TwoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.findme.app.modules.six.ui.SixActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.findme.app.modules.one.ui.PreviewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.findme.app.modules.five.ui.FiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.findme.app.modules.three.ui.ThreeActivity"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

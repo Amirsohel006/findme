@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="sixRowModel" type="com.findme.app.modules.six.data.model.SixRowModel"/>
+    </data>
+    <LinearLayout android:id="@+id/linearRowrectangletwelve"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:orientation="horizontal">
+        <ImageView android:id="@+id/imageRectangleTwelve"
+            android:layout_height="@dimen/_112pxh"
+            android:layout_width="@dimen/_112pxh"
+            android:scaleType="fitXY" cornerRadius="@{@dimen/_5pxh}"
+            imageRes="@{@drawable/img_rectangle12}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle12"/>
+        <ImageView android:id="@+id/imageRectangleThirteen"
+            android:layout_height="@dimen/_112pxh"
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_width="@dimen/_112pxh"
+            android:scaleType="fitXY" cornerRadius="@{@dimen/_5pxh}"
+            imageRes="@{@drawable/img_rectangle13}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle13"/>
+        <ImageView android:id="@+id/imageRectangleFourteen"
+            android:layout_height="@dimen/_112pxh"
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_width="@dimen/_112pxh"
+            android:scaleType="fitXY" cornerRadius="@{@dimen/_5pxh}"
+            imageRes="@{@drawable/img_rectangle14}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle14"/>
+    </LinearLayout>
+</layout>

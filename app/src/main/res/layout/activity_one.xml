@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="oneVM" type="com.findme.app.modules.one.data.viewmodel.OneVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frameOne"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        style="@style/groupStylewhite_A700">
+
+
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
+            android:layout_width="@dimen/_361pxh"
+            android:layout_height="@dimen/_216pxh"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_230pxh"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:background="@drawable/background"
+           />
+
+
+    </FrameLayout>
+</layout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="frameVM" type="com.findme.app.modules.frame.data.viewmodel.FrameVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frameStackrectangle"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+        <LinearLayout android:id="@+id/linearColumnrectangle"
+            android:layout_gravity="start"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylewhite_A700">
+            <LinearLayout android:id="@+id/linearRowrectangleTwo"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal" style="@style/groupStylecornerRadius_3">
+                <LinearLayout android:id="@+id/linearRowrectangle"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15pxv"
+                    android:layout_marginStart="@dimen/_23pxh"
+                    android:layout_marginTop="@dimen/_57pxv"
+                    android:layout_weight="0.87"
+                    android:layout_width="0dp" android:orientation="horizontal">
+                    <View
+                        android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_101_e_gray_300_radius_4_66"
+                        android:id="@+id/viewRectangle"
+                        android:layout_height="@dimen/_15pxh"
+                        android:layout_marginBottom="@dimen/_21pxv" android:layout_width="@dimen/_9pxh"/>
+                    <View
+                        android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_101_e_gray_300_radius_6"
+                        android:id="@+id/viewRectangleOne"
+                        android:layout_height="@dimen/_27pxv"
+                        android:layout_marginStart="@dimen/_21pxh"
+                        android:layout_marginTop="@dimen/_10pxv" android:layout_width="@dimen/_110pxh"/>
+                </LinearLayout>
+                <View
+                    android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_101_e_gray_300_radius_6"
+                    android:id="@+id/viewRectangleTwo"
+                    android:layout_height="@dimen/_14pxv"
+                    android:layout_marginBottom="@dimen/_22pxv"
+                    android:layout_marginEnd="@dimen/_50pxh"
+                    android:layout_marginStart="@dimen/_156pxh"
+                    android:layout_marginTop="@dimen/_74pxv" android:layout_width="@dimen/_22pxh"/>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:gravity="center_horizontal"
+                android:id="@+id/recyclerListrectangleThree"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_16pxh"
+                android:layout_marginStart="@dimen/_17pxh"
+                android:layout_marginTop="@dimen/_36pxv"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                itemSpace="@{@dimen/_24pxh}" tools:itemCount="8" tools:listitem="@layout/row_listrectangle_three"/>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

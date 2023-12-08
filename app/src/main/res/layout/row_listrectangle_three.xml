@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="listrectangleThreeRowModel" type="com.findme.app.modules.frame.data.model.ListrectangleThreeRowModel"/>
+    </data>
+    <LinearLayout android:id="@+id/linearRowrectangleThree"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:orientation="horizontal">
+        <View
+            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_101_e_gray_300_radius_6"
+            android:id="@+id/viewRectangleThree"
+            android:layout_height="@dimen/_112pxh" android:layout_width="@dimen/_112pxh"/>
+        <View
+            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_101_e_gray_300_radius_6"
+            android:id="@+id/viewRectangleOne"
+            android:layout_height="@dimen/_112pxh"
+            android:layout_marginStart="@dimen/_12pxh" android:layout_width="@dimen/_112pxh"/>
+        <View
+            android:background="@drawable/rectangle_gradient_s_gray_200_c_gray_101_e_gray_300_radius_6"
+            android:id="@+id/viewRectangleTwo"
+            android:layout_height="@dimen/_112pxh"
+            android:layout_marginStart="@dimen/_12pxh" android:layout_width="@dimen/_112pxh"/>
+    </LinearLayout>
+</layout>

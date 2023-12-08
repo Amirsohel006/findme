@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="mCheckValidateOneVM"
+            type="com.findme.app.modules.one.data.viewmodel.OneVM"/>
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    tools:context=".modules.one.ui.PreviewActivity">
+
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="@dimen/_361pxh"
+        android:layout_height="@dimen/_216pxh"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_230pxh"
+        android:layout_marginEnd="@dimen/_10pxh"
+        android:layout_marginStart="@dimen/_10pxh"
+        android:background="@drawable/background"
+        />
+
+</LinearLayout>
+</layout>

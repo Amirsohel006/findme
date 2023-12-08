@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+<color name="gray_600">#7c7c7c</color>
+  <color name="gray_601">#717171</color>
+  <color name="gray_500">#a3a3a3</color>
+  <color name="amber_600">#ffaf08</color>
+  <color name="gray_800">#413f3f</color>
+  <color name="bluegray_100">#d9d9d9</color>
+  <color name="black_900_3f">#3f000000</color>
+  <color name="gray_200">#f1efef</color>
+  <color name="gray_101">#f8f7f7</color>
+  <color name="gray_300">#e7e5e5</color>
+  <color name="gray_50">#f8f8f8</color>
+  <color name="gray_100">#f4f4f4</color>
+  <color name="bluegray_900">#282858</color>
+  <color name="indigo_A702">#2939da</color>
+  <color name="indigo_A701">#3443ff</color>
+  <color name="indigo_A700">#2535fd</color>
+  <color name="black_900">#000000</color>
+  <color name="indigo_A400">#3c4fee</color>
+  <color name="indigo_900">#0a1b74</color>
+  <color name="indigo_700">#1d2eb4</color>
+  <color name="white_A700">#ffffff</color>
+  <color name="indigo_800">#26438c</color>
+</resources>

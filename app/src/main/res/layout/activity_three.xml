@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="threeVM" type="com.findme.app.modules.three.data.viewmodel.ThreeVM"/>
+    </data>
+    <FrameLayout android:id="@+id/frameThree"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/imageImageOne"
+            android:layout_gravity="top|start"
+            android:layout_height="@dimen/_310pxv"
+            android:layout_marginBottom="@dimen/_10pxv"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            imageRes="@{@drawable/img_image1_310x393}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_image1_310x393"/>
+        <FrameLayout android:id="@+id/frameStackrectanglethree"
+            android:layout_gravity="bottom|center"
+            android:layout_height="@dimen/_379pxv"
+            android:layout_marginBottom="@dimen/_160pxv"
+            android:layout_marginEnd="@dimen/_18pxh"
+            android:layout_marginStart="@dimen/_18pxh"
+            android:layout_marginTop="@dimen/_160pxv" android:layout_width="@dimen/_354pxh">
+            <ImageView android:id="@+id/imageRectangleThree"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_379pxh"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                imageRes="@{@drawable/img_rectangle3}"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle3"/>
+            <LinearLayout android:id="@+id/linearColumn"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_40pxv"
+                android:layout_marginEnd="@dimen/_37pxh"
+                android:layout_marginStart="@dimen/_40pxh"
+                android:layout_marginTop="@dimen/_40pxv"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <LinearLayout android:gravity="center_horizontal"
+                    android:id="@+id/linearColumngroup550"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6pxh"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical" style="@style/groupStylewhite_A700cornerRadius">
+                    <EditText
+                        android:background="@drawable/rectangle_border_indigo_800_radius_10"
+                        android:drawablePadding="@dimen/_16pxh"
+                        android:drawableStart="@drawable/img_accountcircle"
+                        android:ellipsize="end"
+                        android:hint="@string/lbl_enter_name"
+                        android:id="@+id/etGroup550"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_15pxh"
+                        android:layout_marginStart="@dimen/_15pxh"
+                        android:layout_marginTop="@dimen/_36pxv"
+                        android:layout_width="match_parent"
+                        android:paddingBottom="@dimen/_17pxv"
+                        android:paddingEnd="@dimen/_30pxh"
+                        android:paddingStart="@dimen/_12pxh"
+                        android:paddingTop="@dimen/_16pxv"
+                        android:singleLine="true"
+                        android:text="@={threeVM.threeModel.etGroup550Value}"
+                        android:textColorHint="@color/gray_500"
+                        style="@style/etRoundedOutline" tools:ignore="Autofill"/>
+                    <EditText
+                        android:background="@drawable/rectangle_border_indigo_800_radius_10"
+                        android:drawablePadding="@dimen/_19pxh"
+                        android:drawableStart="@drawable/img_vector"
+                        android:ellipsize="end"
+                        android:hint="@string/msg_enter_mobile_nu"
+                        android:id="@+id/etGroup551"
+                        android:inputType="phone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_33pxv"
+                        android:layout_marginEnd="@dimen/_15pxh"
+                        android:layout_marginStart="@dimen/_15pxh"
+                        android:layout_marginTop="@dimen/_15pxv"
+                        android:layout_width="match_parent"
+                        android:paddingBottom="@dimen/_15pxv"
+                        android:paddingEnd="@dimen/_30pxh"
+                        android:paddingStart="@dimen/_15pxh"
+                        android:paddingTop="@dimen/_18pxv"
+                        android:singleLine="true"
+                        android:text="@={threeVM.threeModel.etGroup551Value}"
+                        android:textColorHint="@color/gray_500"
+                        style="@style/etRoundedOutline" tools:ignore="Autofill"/>
+                </LinearLayout>
+                <LinearLayout android:gravity="center_horizontal"
+                    android:id="@+id/linearColumnregister"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_2pxh"
+                    android:layout_marginTop="@dimen/_26pxv"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical" style="@style/groupStylecornerRadius_1">
+                    <TextView android:ellipsize="end"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/txtRegister"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_15pxv"
+                        android:layout_marginEnd="@dimen/_93pxh"
+                        android:layout_marginStart="@dimen/_93pxh"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:text="@{threeVM.threeModel.txtRegister}"
+                        style="@style/txtNunitobold20" tools:text="@string/lbl_register"/>
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+        <ImageView android:id="@+id/imageGroup560"
+            android:layout_gravity="bottom|end"
+            android:layout_height="@dimen/_137pxh"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_20pxv"
+            android:layout_width="@dimen/_143pxh"
+            android:scaleType="fitXY"
+            imageRes="@{@drawable/img_group560}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_group560"/>
+        <ImageView android:id="@+id/imageGroup561"
+            android:layout_gravity="top|start"
+            android:layout_height="@dimen/_137pxh"
+            android:layout_marginBottom="@dimen/_253pxv"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_253pxv"
+            android:layout_width="@dimen/_134pxh"
+            android:scaleType="fitXY"
+            imageRes="@{@drawable/img_group560}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_group560"/>
+    </FrameLayout>
+</layout>
