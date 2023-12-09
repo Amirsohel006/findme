@@ -3,15 +3,21 @@ package com.findme.app.modules.six.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.findme.app.R
 import com.findme.app.databinding.RowSixBinding
 import com.findme.app.modules.six.`data`.model.SixRowModel
+import com.findme.app.responses.SimilarImage
+import com.findme.app.responses.SimilarImages
 import kotlin.Int
 import kotlin.collections.List
 
 class SixAdapter(
-  var list: List<String>
+    private val list: List<SimilarImages>
 ) : RecyclerView.Adapter<SixAdapter.RowSixVH>() {
   private var clickListener: OnItemClickListener? = null
 
@@ -21,26 +27,15 @@ class SixAdapter(
   }
 
   override fun onBindViewHolder(holder: RowSixVH, position: Int) {
-//    val sixRowModel = SixRowModel()
-//    // TODO uncomment following line after integration with data source
-//    // val sixRowModel = list[position]
-//    holder.binding.sixRowModel = sixRowModel
-
-    // Glide.with(holder.itemView.context).load(imageList[position]).into(holder.imageView)
+   return holder.bindView(list[position])
   }
 
   override fun getItemCount(): Int {
   return list.size
   }
 
-  public fun updateData(newData: List<String>) {
-    list = newData
-    notifyDataSetChanged()
-  }
 
-  fun setOnItemClickListener(clickListener: OnItemClickListener) {
-    this.clickListener = clickListener
-  }
+
 
   interface OnItemClickListener {
     fun onItemClick(
@@ -54,6 +49,19 @@ class SixAdapter(
   inner class RowSixVH(
     view: View
   ) : RecyclerView.ViewHolder(view) {
-    val binding: RowSixBinding = RowSixBinding.bind(itemView)
+   val image:ImageView=itemView.findViewById(R.id.imageRectangleTwelve)
+
+    // Define the corner radius in pixels (converted from dp)
+    val cornerRadiusInPixels = 15 // Change to your dimension resource
+
+    // Create a RequestOptions object with the RoundedCorners transformation
+    val requestOptions = RequestOptions()
+      .transform(RoundedCorners(cornerRadiusInPixels))
+    fun bindView(posModel:SimilarImages){
+      Glide.with(itemView.context)
+        .load(posModel.imageUrl) // Replace with your image URL or resource ID
+        .apply(requestOptions)
+        .into(image)
+    }
   }
 }

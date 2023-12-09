@@ -1,6 +1,7 @@
 package com.findme.app.services
 
 import com.findme.app.ImageResponse
+import com.findme.app.responses.SimilarImage
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -24,9 +25,9 @@ interface ApiInterface {
 
 @Multipart
     @POST("api/image-search/")
-    fun signUp(@Part("event")event:String,
+    fun signUp(@Part("event")event:Int,
                @Part file: MultipartBody.Part)
-            : Call<ImageResponse>
+            : Call<SimilarImage>
     //,@Part("profile_picture") profile_picture: Part?
 
 

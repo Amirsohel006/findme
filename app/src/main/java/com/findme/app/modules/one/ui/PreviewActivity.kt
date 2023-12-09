@@ -131,12 +131,12 @@ class PreviewActivity : BaseActivity<ActivityPreviewBinding>(R.layout.activity_p
 
         try {
             val jsonObject = JSONObject(qrCodeData)
-            val eventName = jsonObject.getString("event_name")
+            val event_id = jsonObject.getInt("Event_id")
 
-            Log.d(TAG, "Event Name: $eventName")
+            Log.d(TAG, "Event Name: $event_id")
 
             // Now you have the event_name, you can pass it to the next activity
-            moveToValidActivity(eventName)
+            moveToValidActivity(event_id)
         } catch (e: JSONException) {
             // Handle JSON parsing exception
             Log.e(TAG, "Error parsing QR code data: $qrCodeData", e)
@@ -191,9 +191,9 @@ class PreviewActivity : BaseActivity<ActivityPreviewBinding>(R.layout.activity_p
 
 
 
-    private fun moveToValidActivity(eventName: String) {
+    private fun moveToValidActivity(event_id: Int) {
         val i=Intent(this,FiveActivity::class.java)
-        intent.putExtra("event_name", eventName)
+        intent.putExtra("event_id", event_id)
         startActivity(i)
     }
 

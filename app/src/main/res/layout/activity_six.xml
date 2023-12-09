@@ -19,14 +19,14 @@
                 android:layout_marginBottom="@dimen/_13pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:layout_marginStart="@dimen/_22pxh"
-                android:layout_marginTop="@dimen/_65pxv"
+                android:layout_marginTop="@dimen/_5pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtYourPhotos"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_2pxv"
                     android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_weight="0.57"
+                    android:layout_weight="0.67"
                     android:layout_width="0dp" android:singleLine="true"
                     android:text="@{sixVM.sixModel.txtYourPhotos}"
                     style="@style/txtNunitosemibold20" tools:text="@string/lbl_your_photos"/>

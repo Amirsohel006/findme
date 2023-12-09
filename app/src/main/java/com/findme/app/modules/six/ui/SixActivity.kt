@@ -1,16 +1,20 @@
 package com.findme.app.modules.six.ui
 
-import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.findme.app.R
 import com.findme.app.appcomponents.base.BaseActivity
 import com.findme.app.databinding.ActivitySixBinding
 import com.findme.app.modules.five.ui.FiveActivity
 import com.findme.app.modules.six.`data`.model.SixRowModel
 import com.findme.app.modules.six.`data`.viewmodel.SixVM
+import com.findme.app.responses.SimilarImage
+import com.findme.app.responses.SimilarImages
+import retrofit2.Callback
 import kotlin.Int
 import kotlin.String
 import kotlin.Unit
@@ -25,30 +29,20 @@ class SixActivity : BaseActivity<ActivitySixBinding>(R.layout.activity_six) {
 
   override fun onInitialized(): Unit {
     viewModel.navArguments = intent.extras?.getBundle("bundle")
-  //  val sixAdapter = SixAdapter(viewModel.sixList.value?:mutableListOf())
 
 
-//    recyclerView = findViewById(R.id.recyclerView)
-//    recyclerView.layoutManager = LinearLayoutManager(this)
-//
-//    // Get the list of images from the intent
-//    val imageList = intent.getSerializableExtra("imageList") as ArrayList<String>
-//
-//    // Initialize and set up the adapter
-//    adapter = ImageAdapter(imageList)
-//    recyclerView.adapter = adapter
+    val imageList = intent.getParcelableArrayListExtra<SimilarImages>("imageList")
 
-//    binding.recyclerSix.adapter = sixAdapter
-//    sixAdapter.setOnItemClickListener(
-//    object : SixAdapter.OnItemClickListener {
-//      override fun onItemClick(view:View, position:Int, item : SixRowModel) {
-//        onClickRecyclerSix(view, position, item)
-//      }
-//    }
-//    )
-//    viewModel.sixList.observe(this) {
-//      sixAdapter.updateData(it)
-//    }
+
+    val recyclerView: RecyclerView = findViewById(R.id.recyclerSix)
+    val adapter = imageList?.let { SixAdapter(it) }
+    recyclerView.adapter = adapter
+    recyclerView.layoutManager = GridLayoutManager(this,3)
+
+
+    binding.sixVM = viewModel
+
+
     binding.sixVM = viewModel
   }
 
@@ -71,10 +65,11 @@ class SixActivity : BaseActivity<ActivitySixBinding>(R.layout.activity_six) {
   companion object {
     const val TAG: String = "SIX_ACTIVITY"
 
-    fun getIntent(context: Context, bundle: Bundle?): Intent {
-      val destIntent = Intent(context, SixActivity::class.java)
-      destIntent.putExtra("bundle", bundle)
-      return destIntent
-    }
+//    fun getIntent(context: Callback<SimilarImage>, bundle: ArrayList<SimilarImages>): Intent {
+//      val destIntent = Intent(context, FiveActivity::class.java)
+//      destIntent.putExtra("bundle", bundle)
+//      return destIntent
+//    }
+
   }
 }

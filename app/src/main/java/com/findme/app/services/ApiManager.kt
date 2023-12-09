@@ -5,29 +5,33 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 object ApiManager {
-    //private val BASE_URL="http://206.189.137.239"
-    private val BASE_URL = "https://7b15-152-58-111-172.ngrok-free.app"
+    private val BASE_URL = "https://ca97-152-58-111-226.ngrok-free.app"
 
     // API response interceptor
     val loggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY)
 
-    // Client
+    // Client with logging interceptor and extended timeouts
     val client = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
+        .connectTimeout(180, TimeUnit.SECONDS) // Adjust the timeout as needed
+        .readTimeout(180, TimeUnit.SECONDS)    // Adjust the timeout as needed
+        .writeTimeout(180, TimeUnit.SECONDS)   // Adjust the timeout as needed
         .build()
 
     var gson = GsonBuilder()
         .setLenient()
         .create()
 
-    val  apiInterface : ApiInterface by lazy {
+    val apiInterface: ApiInterface by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson)).client(client)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiInterface::class.java)
     }
@@ -36,3 +40,4 @@ object ApiManager {
         return BASE_URL + imagePath
     }
 }
+
