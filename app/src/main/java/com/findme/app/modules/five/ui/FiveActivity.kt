@@ -12,6 +12,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.camera.core.CameraSelector
@@ -22,14 +23,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.net.toFile
-import androidx.core.net.toUri
-import com.findme.app.ImageResponse
 import com.findme.app.R
 import com.findme.app.appcomponents.base.BaseActivity
 import com.findme.app.databinding.ActivityFiveBinding
 import com.findme.app.modules.five.data.viewmodel.FiveVM
 import com.findme.app.modules.six.ui.SixActivity
+import com.findme.app.responses.SimilarImage
 import com.findme.app.services.ApiInterface
 import com.findme.app.services.ApiManager
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -51,6 +50,8 @@ import java.util.concurrent.Executors
 
 class FiveActivity : BaseActivity<ActivityFiveBinding>(R.layout.activity_five) {
 
+
+
   private val viewModel: FiveVM by viewModels<FiveVM>()
  // private var cameraExecutor: ExecutorService? = null
   private var imageCapture: ImageCapture? = null
@@ -58,7 +59,11 @@ class FiveActivity : BaseActivity<ActivityFiveBinding>(R.layout.activity_five) {
 
 
 
+    var multipartImage: MultipartBody.Part? = null
+
   private var cameraExecutor: ExecutorService = Executors.newSingleThreadExecutor()
+
+    private  var file: File?=null
 
 
   override fun onInitialized() {
@@ -67,6 +72,8 @@ class FiveActivity : BaseActivity<ActivityFiveBinding>(R.layout.activity_five) {
 
 
       apiService=ApiManager.apiInterface
+
+
 
 
     if (requestCameraPermission()) {
@@ -81,12 +88,13 @@ class FiveActivity : BaseActivity<ActivityFiveBinding>(R.layout.activity_five) {
   }
 
   override fun setUpClicks() {
-    binding.viewEllipseNine.setOnClickListener {
-      // Capture a picture when the button is clicked
+//      binding.viewEllipseNine.setOnClickListener {
+//          // Request external storage permission
+//          //requestReadExternalStoragePermission()
+//      }
 
-    }
 
-    binding.btnArrowleft.setOnClickListener {
+      binding.btnArrowleft.setOnClickListener {
       finish()
     }
   }
@@ -97,27 +105,88 @@ class FiveActivity : BaseActivity<ActivityFiveBinding>(R.layout.activity_five) {
     private fun dispatchTakePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(packageManager) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            // Create an intent for picking an image from the gallery
+            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+
+            // Create a chooser dialog to allow the user to select between camera and gallery
+            val chooser = Intent.createChooser(galleryIntent, "Select Image Source")
+
+            // Add the camera intent as an additional option
+            chooser.putExtra(
+                Intent.EXTRA_INITIAL_INTENTS,
+                arrayOf(takePictureIntent)
+            )
+
+            startActivityForResult(chooser, REQUEST_IMAGE_CAPTURE)
         }
     }
+
+
+    private fun requestReadExternalStoragePermission() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            // Permission already granted, launch gallery intent
+            dispatchChooseFromGalleryIntent()
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             // Image capture successful
-           // imageUri=data?.data!!
-            val photoFile = createTempFile()
-
-
-            //file = getFile(this, photoFile.toUri())
-
-            showConfirmationDialog(photoFile)
-
-           // Log.d("Profile_Photo", file.toString())
+            val photoFile:Uri? = data?.data
+            if(photoFile != null) {
+                file = getFile(this, photoFile)
+                showConfirmationDialog(file!!)
+            }else{
+                // Image capture or selection failed or canceled
+            }
+            //uploadImageToApi(file!!)
+        } else if (requestCode == REQUEST_PICK_IMAGE && resultCode == Activity.RESULT_OK) {
+            val selectedImageUri: Uri? = data?.data
+            if (selectedImageUri != null) {
+                val selectedImageFile = getFile(this, selectedImageUri)
+                showConfirmationDialog(selectedImageFile)
+                // Call postApi method with the selected image file
+                //uploadImageToApi(selectedImageFile)
+            }
         } else {
-            // Image capture failed or canceled
+            // Image capture or selection failed or canceled
         }
     }
 
+
+
+    private fun dispatchChooseFromGalleryIntent() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_PICK_IMAGE)
+    }
+
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                dispatchChooseFromGalleryIntent()
+            } else {
+                // Permission denied, show a message or handle accordingly
+            }
+        }
+    }
 
 
     private fun showConfirmationDialog(photoFile: File) {
@@ -126,7 +195,8 @@ class FiveActivity : BaseActivity<ActivityFiveBinding>(R.layout.activity_five) {
         alertDialogBuilder.setMessage("Do you want to use this image?")
         alertDialogBuilder.setPositiveButton("OK") { dialog, which ->
             // User clicked OK, perform API call with the image
-            uploadImageToApi(photoFile)
+            uploadImageToApi(file!!)
+            binding.progressbar.visibility= View.VISIBLE
         }
         alertDialogBuilder.setNegativeButton("Retry") { dialog, which ->
             // User clicked Retry, reopen the camera to capture a new image
@@ -139,48 +209,90 @@ class FiveActivity : BaseActivity<ActivityFiveBinding>(R.layout.activity_five) {
 
 
     private fun uploadImageToApi(photoFile: File) {
-        // TODO: Implement your API call to upload the image here
-        // Example using Retrofit
-        val requestBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(), photoFile)
-        val imagePart = MultipartBody.Part.createFormData("query_image", photoFile.name, requestBody)
-        val eventName=intent.getStringExtra("event_name")
-        val call =  apiService.signUp("Ewwvent1",imagePart)
-        call.enqueue(object : Callback<ImageResponse> {
-            override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
-                if (response.isSuccessful) {
 
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        Toast.makeText(this@FiveActivity, "Images Retrieved", Toast.LENGTH_SHORT).show()
-                        Log.d("response_data", responseBody.toString())
+            val requestFile: RequestBody = RequestBody.create(
+                "image/*".toMediaTypeOrNull(),
+                photoFile
+            )
+            multipartImage =
+                MultipartBody.Part.createFormData("query_image", photoFile.name, requestFile)
 
-                        // Pass the list of images to the next activity
-                       // val imageList = responseBody.getImages() // Replace this with the actual method to get images from the response
-
-                        // Start the next activity and pass the image list
-//                        val intent = SixActivity.getIntent(this@FiveActivity,imageList)
-//                        startActivity(intent)
 //
-//                        finishAffinity()
+//        // TODO: Implement your API call to upload the image here
+//        // Example using Retrofit
+//        val requestFile: RequestBody = RequestBody.create(
+//            "image/*".toMediaType(),
+//            photoFile
+//        )
+//        multipartImage = MultipartBody.Part.createFormData("query_image", photoFile.name, requestFile)
+            val event_id = intent.getIntExtra("event_id", 1)
+            val call = apiService.signUp(event_id, multipartImage!!)
+            call.enqueue(object : Callback<SimilarImage> {
+                override fun onResponse(
+                    call: Call<SimilarImage>,
+                    response: Response<SimilarImage>
+                ) {
+                    if (response.isSuccessful) {
+                        binding.progressbar.visibility= View.GONE
+                        val responseBody = response.body()
+                        if (responseBody != null) {
+                            Toast.makeText(
+                                this@FiveActivity,
+                                "Images Retrieved",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Log.d("response_data", responseBody.toString())
+
+                            // Extract the list of images
+                            //val imageList = responseBody
+
+
+                            val imageList = responseBody.similarImages
+
+                            val intent = Intent(this@FiveActivity, SixActivity::class.java)
+                            intent.putExtra("imageList", imageList)
+                            startActivity(intent)
+
+
+
+
+                        } else {
+                            Toast.makeText(
+                                this@FiveActivity,
+                                "Images Retreived Failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            binding.progressbar.visibility= View.VISIBLE
+                        }
                     } else {
-                        Toast.makeText(this@FiveActivity, "Images Retreived Failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@FiveActivity, "Image Retreived Failed", Toast.LENGTH_SHORT)
+                            .show()
+
+                        binding.progressbar.visibility= View.VISIBLE
 
                     }
                 }
-                else {
-                    Toast.makeText(this@FiveActivity, "Registration failed", Toast.LENGTH_SHORT).show()
 
+                override fun onFailure(call: Call<SimilarImage>, t: Throwable) {
+                    Toast.makeText(
+                        this@FiveActivity,
+                        "Registration failed: ${t.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Log.d(t.message, "Server Issue!!")
+
+                    binding.progressbar.visibility= View.VISIBLE
                 }
-            }
-            override fun onFailure(call: Call<ImageResponse>, t: Throwable) {
-                Toast.makeText(this@FiveActivity, "Registration failed: ${t.message}", Toast.LENGTH_SHORT).show()
-                Log.d(t.message,"This fails in signup response")
-            }
-        })
-        // Replace with your actual API call
-        // val call: Call<YourResponseModel> = yourApiService.uploadImage(imagePart)
-        // call.enqueue(object : Callback<YourResponseModel> { ... })
-    }
+            })
+            // Replace with your actual API call
+            // val call: Call<YourResponseModel> = yourApiService.uploadImage(imagePart)
+            // call.enqueue(object : Callback<YourResponseModel> { ... })
+        }
+
+
+
+
 
 
 
@@ -320,7 +432,10 @@ class FiveActivity : BaseActivity<ActivityFiveBinding>(R.layout.activity_five) {
   companion object {
     const val TAG: String = "FIVE_ACTIVITY"
     private const val REQUEST_IMAGE_CAPTURE=10
-      private const val CAMERA_PERMISSION_REQUEST_CODE=100
+      private const val REQUEST_PICK_IMAGE=101
+      private const val CAMERA_PERMISSION_REQUEST_CODE=102
+      private const val READ_EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE=100
+
     fun getIntent(context: Context, bundle: Bundle?): Intent {
       val destIntent = Intent(context, FiveActivity::class.java)
       destIntent.putExtra("bundle", bundle)

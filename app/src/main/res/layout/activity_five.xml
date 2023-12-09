@@ -37,15 +37,26 @@
                         android:id="@+id/txtTakeSelfie"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_11pxv"
-                        android:layout_marginStart="@dimen/_65pxh"
+                        android:layout_marginStart="@dimen/_5pxh"
                         android:layout_marginTop="@dimen/_14pxv"
                         android:layout_weight="0.67"
                         android:layout_width="0dp"
                         android:singleLine="true"
-                        android:text="@{fiveVM.fiveModel.txtTakeSelfie}"
-                        style="@style/txtRalewayromanmedium20_1" tools:text="@string/lbl_take_selfie"/>
+                        android:text="Initializing Please Wait..."
+                        style="@style/txtRalewayromanmedium20_1"
+                        tools:text="Initializing Please Wait..."/>
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
+
+
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <androidx.camera.view.PreviewView
                 android:background="@drawable/rectangle_bg_gray_50_border_bluegray_100"
                 android:id="@+id/viewRectangleEleven"
@@ -53,15 +64,16 @@
                 android:layout_height="@dimen/_509pxh"
                 android:layout_marginTop="@dimen/_22pxv"
                 android:layout_width="@dimen/_361pxh"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:background="@drawable/rectangle_bg_indigo_a400_radius_40_5"
-                android:id="@+id/viewEllipseNine"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="@dimen/_81pxh"
-                android:layout_marginEnd="@dimen/_15pxh"
-                android:layout_marginStart="@dimen/_15pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_width="@dimen/_81pxh"/>
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:background="@drawable/rectangle_bg_indigo_a400_radius_40_5"-->
+<!--                android:id="@+id/viewEllipseNine"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_height="@dimen/_81pxh"-->
+<!--                android:layout_marginEnd="@dimen/_15pxh"-->
+<!--                android:layout_marginStart="@dimen/_15pxh"-->
+<!--                android:layout_marginTop="@dimen/_1pxv"-->
+<!--                android:layout_width="@dimen/_81pxh"/>-->
         </LinearLayout>
+
     </FrameLayout>
 </layout>
